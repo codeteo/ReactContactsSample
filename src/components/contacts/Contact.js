@@ -8,10 +8,20 @@ class Contact extends Component {
     showContactInfo: false
   };
 
-  onDeleteClick = (id, dispatch) => {
-    axios
-      .delete(`https://jsonplaceholder.typicode.com/users/${id}`)
-      .then(res => dispatch({ type: "DELETE-CONTACT", payload: id }));
+  /**
+   * Since we don't control the server nothing gets deleted
+   * and the requests results to a 404 Error. Therefore we use
+   * a try-catch statement to call the dispatch function
+   * for the error and eventually remove the contract from the list.
+   */
+  onDeleteClick = async (id, dispatch) => {
+    try {
+      await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
+
+      dispatch({ type: "DELETE-CONTACT", payload: id });
+    } catch (error) {
+      dispatch({ type: "DELETE-CONTACT", payload: id });
+    }
   };
 
   render() {
