@@ -1,6 +1,6 @@
 # CRUD App using ReactJS And Context API
 
-![Sample](/imgs/img1.png?raw=true =640x480)
+![Sample](/imgs/img1.png?raw=true)
 
 ## Getting Started
 
